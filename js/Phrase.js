@@ -6,13 +6,19 @@ class Phrase {
   addPhraseToDisplay() {
     const ul = document.querySelector('#phrase ul');
     const phrase = this.phrase.split('');
-    const splitLetters = phrase.map((letter) => {
+    phrase.map((letter) => {
+      const li = document.createElement('li');
+      li.classList.add('hide');
+      li.textContent = `${letter}`;
+
       if (letter === ' ') {
-        return `<li class="hide space"> </li>`;
+        li.classList.add('space');
+      } else {
+        li.classList.add('letter');
+        li.classList.add(`${letter}`);
       }
-      return `<li class="hide letter ${letter}">${letter}</li>`;
+      ul.appendChild(li);
     });
     /* Loop through each item in the array and append it to the DOM!??!?!?*/
-    console.log(splitLetters);
   }
 }
