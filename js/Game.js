@@ -6,7 +6,7 @@ class Game {
   }
 
   createPhrases() {
-    const phrases = [new Phrase('Hello'), new Phrase('Brown fox')];
+    const phrases = [new Phrase('Hello'), new Phrase('Brown fobx')];
     return phrases;
   }
 

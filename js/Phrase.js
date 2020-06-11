@@ -25,5 +25,11 @@ class Phrase {
     return this.phrase.includes(letter) ? true : false;
   }
 
-  showMatchedLetter() {}
+  showMatchedLetter(letter) {
+    const letterClass = document.querySelectorAll(`.${letter}`);
+    for (let i = 0; i < letterClass.length; i++) {
+      letterClass[i].classList.remove('hide');
+      letterClass[i].classList.add('show');
+    }
+  }
 }
