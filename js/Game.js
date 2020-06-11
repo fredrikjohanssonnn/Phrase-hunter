@@ -6,7 +6,7 @@ class Game {
   }
 
   createPhrases() {
-    const phrases = [new Phrase('Hello'), new Phrase('Brown fobx')];
+    const phrases = [new Phrase('Hello'), new Phrase('Brown Big Fox')];
     return phrases;
   }
 
@@ -25,7 +25,12 @@ class Game {
 
   handleInteraction() {}
 
-  checkForWin() {}
+  checkForWin() {
+    const phrase = this.activePhrase.phrase;
+    /* Check if the letters that has been chosen, matches the letters in the activePhrase 
+    return phrase === thechosenletters ? true : false;
+    */
+  }
 
   removeLife() {}
 
