@@ -20,4 +20,10 @@ class Phrase {
       ul.appendChild(li);
     });
   }
+
+  checkLetter(letter) {
+    return this.phrase.includes(letter) ? true : false;
+  }
+
+  showMatchedLetter() {}
 }
