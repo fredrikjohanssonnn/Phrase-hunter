@@ -14,4 +14,12 @@ class Game {
     const random = Math.floor(Math.random() * this.phrases.length);
     return this.phrases[random];
   }
+
+  startGame() {
+    const overlay = document.getElementById('overlay');
+    overlay.style.display = 'none';
+    this.getRandomPhrase();
+    this.activePhrase = this.getRandomPhrase();
+    this.activePhrase.addPhraseToDisplay();
+  }
 }

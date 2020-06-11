@@ -19,6 +19,5 @@ class Phrase {
       }
       ul.appendChild(li);
     });
-    /* Loop through each item in the array and append it to the DOM!??!?!?*/
   }
 }
