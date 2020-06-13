@@ -26,10 +26,13 @@ class Game {
   handleInteraction() {}
 
   checkForWin() {
-    const phrase = this.activePhrase.phrase;
-    /* Check if the letters that has been chosen, matches the letters in the activePhrase 
-    return phrase === thechosenletters ? true : false;
-    */
+    const shroudedElement = document.querySelectorAll(`.hide`);
+    for (let i = 0; i < shroudedElement.length; i++) {
+      if (shroudedElement.length >= 1) {
+        return false;
+      }
+    }
+    return true;
   }
 
   removeLife() {}
