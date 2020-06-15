@@ -23,7 +23,9 @@ class Game {
     this.activePhrase.addPhraseToDisplay();
   }
 
-  handleInteraction() {}
+  handleInteraction(e) {
+    console.log(e);
+  }
 
   checkForWin() {
     const shroudedElement = document.querySelectorAll(`.hide`);
