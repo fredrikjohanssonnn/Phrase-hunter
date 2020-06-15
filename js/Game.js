@@ -24,7 +24,18 @@ class Game {
   }
 
   handleInteraction(e) {
-    console.log(e);
+    e.disabled = true;
+    const phrase = JSON.stringify(this.activePhrase.phrase);
+    if (!phrase.includes(e.textContent)) {
+      e.classList.add('wrong');
+      game.removeLife();
+    } else {
+      e.classList.add('chosen');
+      game.activePhrase.showMatchedLetter(e.textContent);
+      game.checkForWin();
+    }
+
+    return game.checkForWin() === true ? game.gameOver(true) : false;
   }
 
   checkForWin() {
