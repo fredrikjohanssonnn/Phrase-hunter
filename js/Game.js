@@ -6,19 +6,23 @@ class Game {
   }
 
   createPhrases() {
-    const phrases = [new Phrase('Hello'), new Phrase('Brown Big Fox')];
+    const phrases = [
+      new Phrase('JavaScript'),
+      new Phrase('NodeJS'),
+      new Phrase('ReactJS'),
+      new Phrase('VueJS'),
+    ];
     return phrases;
   }
 
   getRandomPhrase() {
     const random = Math.floor(Math.random() * this.phrases.length);
-    return this.phrases[random];
+    const randomPhrase = this.phrases[random];
+    return randomPhrase;
   }
 
   startGame() {
-    const overlay = document.getElementById('overlay');
-    overlay.style.display = 'none';
-    this.getRandomPhrase();
+    document.getElementById('overlay').style.display = 'none';
     this.activePhrase = this.getRandomPhrase();
     this.activePhrase.addPhraseToDisplay();
   }
