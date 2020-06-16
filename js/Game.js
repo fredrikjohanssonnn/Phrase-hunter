@@ -67,15 +67,20 @@ class Game {
   gameOver(gameWon) {
     const overlay = document.getElementById('overlay');
     const message = document.getElementById('game-over-message');
+    const btn = document.getElementById('btn__reset');
     overlay.style.display = 'flex';
 
     if (gameWon === true) {
       overlay.classList.remove('start');
       overlay.classList.remove('lose');
+      btn.classList.remove('btn-lose');
       overlay.classList.add('win');
+      btn.classList.add('btn-win');
       message.textContent =
         'Congratulations! You guessed the word before you ran out of life!';
     } else if (gameWon === false) {
+      btn.classList.remove('btn-win');
+      btn.classList.add('btn-lose');
       overlay.classList.remove('start');
       overlay.classList.remove('win');
       overlay.classList.add('lose');
