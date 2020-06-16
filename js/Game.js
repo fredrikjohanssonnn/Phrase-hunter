@@ -39,7 +39,7 @@ class Game {
       game.checkForWin();
     }
 
-    return game.checkForWin() === true ? game.gameOver(true) : false;
+    return game.checkForWin() === true ? game.gameOver(true) : null;
   }
 
   checkForWin() {
@@ -58,7 +58,7 @@ class Game {
     this.missed++;
 
     if (this.missed === 5) {
-      this.gameOver();
+      this.gameOver(false);
     }
 
     return this.missed;
@@ -71,11 +71,13 @@ class Game {
 
     if (gameWon === true) {
       overlay.classList.remove('start');
+      overlay.classList.remove('lose');
       overlay.classList.add('win');
       message.textContent =
         'Congratulations! You guessed the word before you ran out of life!';
-    } else {
+    } else if (gameWon === false) {
       overlay.classList.remove('start');
+      overlay.classList.remove('win');
       overlay.classList.add('lose');
       message.textContent =
         'Oh no, you ran out of life and lost. Buckle up and try again!';
