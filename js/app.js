@@ -22,3 +22,16 @@ document.addEventListener('click', (e) => {
     ? game.handleInteraction(e.target)
     : false;
 });
+
+document.addEventListener('keyup', (e) => {
+  const letters = document.querySelectorAll('.key');
+  for (let i = 0; i < letters.length; i++) {
+    if (e.key === letters[i].innerText) {
+      if (letters[i].classList.contains('key')) {
+        return game.handleInteraction(letters[i]);
+      } else {
+        return false;
+      }
+    }
+  }
+});
