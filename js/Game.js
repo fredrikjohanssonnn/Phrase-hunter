@@ -5,6 +5,12 @@ class Game {
     this.activePhrase = null;
   }
 
+  /**
+    * This function creates an array with new instances of the Phrase object. Each object
+    contains a string.
+    * @return {Object} All Phrase objects
+  */
+
   createPhrases() {
     const phrases = [
       new Phrase('JavaScript'),
@@ -15,11 +21,23 @@ class Game {
     return phrases;
   }
 
+  /**
+   * This function creates a variable which contains a random value between 0 and the
+   * length of the phrase array (index).
+   * @return a {Object} which contains the phrases, but picks one of them by the index.
+   */
+
   getRandomPhrase() {
     const random = Math.floor(Math.random() * this.phrases.length);
     const randomPhrase = this.phrases[random];
     return randomPhrase;
   }
+
+  /**
+   * Removes the overlay element which hides the game interface. It'll then run the
+   * getRandomPhrase function on the activePhrase object. And then runs the addPhraseToDisplay
+   * on the activePhrase object which now contains a random phrase.
+   */
 
   startGame() {
     document.getElementById('overlay').style.display = 'none';
@@ -27,20 +45,35 @@ class Game {
     this.activePhrase.addPhraseToDisplay();
   }
 
+  /**
+   * This function disables each key that has been pressed. As long as the key doesn't contain the
+   * class 'wrong', it will check if the key that was pressed matches a letter in the phrase. If it does,
+   * it will perform some actions based on that.
+   * @return the checkForWin function to see if the player has won the game.
+   */
+
   handleInteraction(e) {
     e.disabled = true;
     const phrase = JSON.stringify(this.activePhrase.phrase);
-    if (!phrase.includes(e.textContent)) {
-      e.classList.add('wrong');
-      game.removeLife();
-    } else {
-      e.classList.add('chosen');
-      game.activePhrase.showMatchedLetter(e.textContent);
-      game.checkForWin();
+    if (!e.classList.contains('wrong')) {
+      if (!phrase.includes(e.textContent)) {
+        e.classList.add('wrong');
+        game.removeLife();
+      } else {
+        e.classList.add('chosen');
+        game.activePhrase.showMatchedLetter(e.textContent);
+        game.checkForWin();
+      }
     }
 
     return game.checkForWin() === true ? game.gameOver(true) : null;
   }
+
+  /**
+   * Loop through every element that has the 'hide' class. The goal here is that if none of the
+   * letters has the 'hide' class (which they start with). We can assume that we have won the game.
+   * @return a {Boolean}. If there's 1 or more 'hide' classes. We return false. Otherwise we return true.
+   */
 
   checkForWin() {
     const shroudedElement = document.querySelectorAll(`.hide`);
@@ -51,6 +84,12 @@ class Game {
     }
     return true;
   }
+
+  /**
+   * Exchange the liveHeart.png with lostHeart.png. Each time we make a falsy attempt, the
+   * this.missed object gets incremented. Based on its index, we swap the images.
+   * @return a {Object} which is a counter that contains each false attempt.
+   */
 
   removeLife() {
     const images = document.querySelectorAll('.tries img');
@@ -63,6 +102,11 @@ class Game {
 
     return this.missed;
   }
+
+  /**
+   * This function handles the UI based on if the user either won or lost. It will add and remove
+   * classes based on the win/lose condition.
+   */
 
   gameOver(gameWon) {
     const overlay = document.getElementById('overlay');
